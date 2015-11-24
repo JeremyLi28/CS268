@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=20mm,
+ right=20mm,
+ top=10mm,
+ bottom=10mm,
+ }
+\usepackage{esvect}
+\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+% See the ``Article customise'' template for come common customisations
+\title{CS 268 Intro to Optimization Homework 2}
+\author{Chen Li}
+%%% BEGIN DOCUMENT
+\begin{document}
+\maketitle
+\section{Problem1} 
+I implement the Conjugate Gradient Method in $ConjugateGradient()$ function.The starting point are draw from a Gaussian Distribution who's $\mu=0$ and $\sigma=1$.I choose $\epsilon_{abs}=10^{-4}$, $\epsilon_{F}=10^{-6}$, $\epsilon_{m}=10^{-15}$, $\epsilon_{G} = 10_{-4}$ and $Euler Distance$ as the result distance measurement. .The parameter I choose in Rosenbrock function is $a=1,b=100$. The Results are as follows, the $Iter_{CG}$ refers to the number of CG iterates before restart; $X_{estimated}$ refers to the error bar of the output argument vector; $Y_{estimated}$ refers to the error bar of output function values; $Total_{GC}$ refers to the total number of CG iterations(no sweeps) 
+\begin{center} 
+\begin{tabular}{l*{6}{c}r} Function & $Iter_{CG}$ & $\epsilon_F$ & $X_{estimated}$ & $Y_{estimated}$ & $Iteration_{estimated}$
+ \\ \hline $RosenBrock$ & 2 & $1e^{-6}$ & $1.673e^{-2}\pm 6.277e^{-3}$ & $1.287e^{-4}\pm 8.246e^{-5}$ & $228.2\pm 59.5$
+\\ $$ & 2 & $1e^{-5}$ & $5.426e^{-2}\pm 1.557e^{-2}$ & $9.824e^{-4}\pm 4.996e^{-4}$ & $243.6\pm 67.7$
+\\ $$ & 3 & $1e^{-6}$ & $1.585e^{-2}\pm 5.685e^{-3}$ & $1.071e^{-4}\pm 6.493e^{-5}$ & $326.1\pm 63.3$
+\\ $$ & 3 & $1e^{-5}$ & $1.487e^{-2}\pm 3.809e^{-3}$ & $7.439e^{-5}\pm 2.700e^{-5}$ & $172.5\pm 51.7$
+\\ $$ & 4 & $1e^{-6}$ & $1.681e^{-2}\pm 6.728e^{-3}$ & $1.412e^{-4}\pm 9.991e^{-5}$ & $293.2\pm 67.2$
+\\ $$ & 4 & $1e^{-5}$ & $7.094e^{-2}\pm 5.607e^{-2}$ & $8.459e^{-3}\pm 8.379e^{-3}$ & $147.2\pm 37.5$
+\\ $$ & 5 & $1e^{-6}$ & $1.465e^{-2}\pm 3.548e^{-3}$ & $6.582e^{-5}\pm 2.507e^{-5}$ & $318.5\pm 74.5$
+\\ $$ & 5 & $1e^{-5}$ & $1.528e^{-2}\pm 4.004e^{-3}$ & $7.968e^{-4}\pm 4.104e^{-5}$ & $136\pm 22.9$
+\\\hline 
+$f(X) = \sum \limits_{i=0}^9 x_i^2$ & 10 & $1e^{-6}$ & $1.634e^{-4}\pm 9.533e^{-5}$ & $1.085e^{-7}\pm 8.150e^{-8}$ & $26.0\pm 5.0$
+\\ $$ & 10 & $1e^{-5}$ & $4.805e^{-4}\pm 2.202e^{-4}$ & $6.674e^{-7}\pm 3.662e^{-7}$ & $26.0\pm 2.2$
+\\ $$ & 11 & $1e^{-6}$ & $6.131e^{-5}\pm 3.527e^{-5}$ & $1.496e^{-8}\pm 1.307e^{-8}$ & $22.0\pm 4.3$
+\\ $$ & 11 & $1e^{-5}$ & $4.315e^{-4}\pm 2.261e^{-4}$ & $6.461e^{-7}\pm 4.811e^{-7}$ & $22.0\pm 3.7$
+\\ $$ & 12 & $1e^{-6}$ & $2.187e^{-4}\pm 1.433e^{-4}$ & $2.327e^{-7}\pm 1.895e^{-7}$ & $31.2\pm 7.4$
+\\ $$ & 12 & $1e^{-5}$ & $2.751e^{-4}\pm 1.177e^{-4}$ & $2.003e^{-7}\pm 1.022e^{-7}$ & $27.6\pm 2.6$
+\\ $$ & 13 & $1e^{-6}$ & $1.653e^{-4}\pm 1.131e^{-4}$ & $1.424e^{-7}\pm 1.328e^{-7}$ & $28.6\pm 6.9$
+\\ $$ & 13 & $1e^{-5}$ & $4.424e^{-4}\pm 2.298e^{-4}$ & $6.712e^{-7}\pm 4.053e^{-7}$ & $27.3\pm 4.5$
+\\ \end{tabular}
+ \end{center}
+\section{Problem2}
+I use RosenBrock function to test both the Steepest Descent Method and Conjugate Gradient Method on their output error, run time and total iteration. The Results are as follows, from the results we can see that the accuracy is similar but Steepest Descent takes much more time and compute resource(Iterations) than the conjugate gradient descent method. But its average iteration time, i.e., seconds per iteration is cheaper than conjugate method.
+\begin{center} 
+\begin{tabular}{l*{6}{c}r} Function &  $Time_{estimated}$ & $Distance_{estimated}$ & $Iteration_{estimated}$ & sec/iteration
+ \\ \hline $Steepest Descent$ &  $4.814\pm 1.681$ & $3.131e^{-4}\pm 9.051e^{-5}$ & $6375.9\pm 2174.3$ & $7.550e{-4}$
+\\ $Conjugate Gradient Descent$ & $0.130\pm 0.048$ & $2.441e^{-4}\pm 6.000e^{-5}$ & $5.41\pm 0.609$ & $8.113e^{-4}$
+\\ \end{tabular}
+ \end{center}
+\section{Implementation}
+In $hw2.py$,  the $Steepest()$ implement the Steepest Descent Method. $ConjugateGradient()$ implement the Conjugate Gradient Method. $Test()$ perform test for$ ConjugateGradient()$ on different parameters and functions. The results can be find in the $test\_results$ folder.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
